@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROFIX - Solar, Refrigeração e Segurança</title>
+    <title>PROFIX - Solar e Refrigeração</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
@@ -11,52 +11,57 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --cor-primaria: #0a2c5a;
             --cor-destaque: #39ff14;
-            --cor-fundo-claro: #ffffff;
+            --cor-fundo-claro: #f8f9fa;
             --cor-texto-escuro: #212529;
             --cor-texto-claro: #ffffff;
         }
 
         html { scroll-behavior: smooth; }
-        body { font-family: 'Roboto', sans-serif; color: var(--cor-texto-escuro); }
+        body { font-family: 'Roboto', sans-serif; color: var(--cor-texto-escuro); background-color: var(--cor-texto-claro); }
+
+        /* --- COMPONENTES REUTILIZÁVEIS --- */
+        .section-padding { padding: 80px 0; }
+        .section-title { text-align: center; margin-bottom: 60px; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--cor-primaria); position: relative; padding-bottom: 15px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--cor-destaque); }
+        .btn-destaque { background-color: var(--cor-destaque); border: none; color: var(--cor-texto-escuro); font-family: 'Montserrat', sans-serif; font-weight: 700; padding: 12px 30px; transition: all 0.3s ease; }
+        .btn-destaque:hover { background-color: var(--cor-texto-claro); transform: scale(1.05); box-shadow: 0 0 15px var(--cor-destaque); color: var(--cor-texto-escuro); }
 
         /* --- BARRA DE NAVEGAÇÃO --- */
         .navbar { background-color: var(--cor-texto-claro); box-shadow: 0 2px 8px rgba(0,0,0,.1); }
         .navbar-brand img { max-height: 60px; }
-        .navbar-nav .nav-link { font-family: 'Montserrat', sans-serif; font-weight: 500; color: var(--cor-texto-escuro); padding: 8px 16px; position: relative; }
+        .navbar-nav .nav-link { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--cor-texto-escuro); padding: 8px 16px; position: relative; }
         .navbar-nav .nav-link::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background-color: var(--cor-destaque); transition: width 0.3s ease; }
         .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after { width: 70%; }
 
-        /* --- CARROSSEL HERO --- */
+        /* --- SEÇÃO HERO --- */
         #heroCarousel .carousel-item { height: 85vh; min-height: 450px; background-size: cover; background-position: center; }
-        #heroCarousel .carousel-caption { background: rgba(10, 44, 90, 0.7); padding: 2rem; border-radius: 15px; bottom: 50%; transform: translateY(50%); }
-        #heroCarousel h5 { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
-        .btn-destaque { background-color: var(--cor-destaque); border: none; color: var(--cor-texto-escuro); font-family: 'Montserrat', sans-serif; font-weight: 700; padding: 12px 30px; transition: all 0.3s ease; }
-        .btn-destaque:hover { background-color: var(--cor-texto-claro); transform: scale(1.05); box-shadow: 0 0 15px var(--cor-destaque); color: var(--cor-texto-escuro); }
+        #heroCarousel .carousel-caption { background: rgba(10, 44, 90, 0.7); padding: 2rem; border-radius: 15px; }
 
-        /* --- ESTILOS GERAIS DE SEÇÃO --- */
-        .section-padding { padding: 80px 0; }
-        .section-title { text-align: center; margin-bottom: 60px; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--cor-primaria); position: relative; padding-bottom: 15px; }
-        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--cor-destaque); }
-        
-        /* --- CARDS DE SERVIÇO --- */
-        .service-card { border: none; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,.08); transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; height: 100%; background-color: #f8f9fa; }
+        /* --- SEÇÃO DE SERVIÇOS --- */
+        .service-card { border: none; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,.08); transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; height: 100%; }
         .service-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,.12); }
-        .service-card .card-img-top { width: 100%; height: 220px; object-fit: cover; }
-        .service-card .card-title { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--cor-primaria); }
+        .service-card .card-img-top { width: 100%; height: 250px; object-fit: cover; }
 
-        /* --- IMAGEM SOBRE NÓS --- */
-        .img-sobre-nos { width: 100%; height: 100%; min-height: 350px; object-fit: cover; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,.1); }
+        /* --- SEÇÃO DIFERENCIAIS --- */
+        .diferencial-item { text-align: center; }
+        .diferencial-item .icon { font-size: 3rem; color: var(--cor-primaria); margin-bottom: 1rem; }
 
-        /* --- MODAL --- */
-        .modal-header { border-bottom: none; }
-        .modal-footer { border-top: none; }
-        #resultado-calculo { transition: all 0.3s ease; }
+        /* --- SEÇÃO CALCULADORA --- */
+        #calculadora { background-color: var(--cor-primaria); color: var(--cor-texto-claro); }
+        #calculadora .form-label, #calculadora .form-check-label { color: var(--cor-texto-claro); }
+        #resultado-calculo-page { transition: all 0.3s ease; font-size: 1.1rem; }
+
+        /* --- SEÇÃO DEPOIMENTOS --- */
+        #depoimentos .carousel-item { padding: 40px; }
+        #depoimentos .carousel-inner { background-color: var(--cor-fundo-claro); border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        #depoimentos .depoimento-texto { font-style: italic; }
+        #depoimentos .depoimento-autor { font-weight: 700; color: var(--cor-primaria); margin-top: 1rem; }
 
         /* --- RODAPÉ --- */
         footer { background-color: var(--cor-primaria); color: var(--cor-texto-claro); }
@@ -68,70 +73,164 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="imagens/logo-profix.png" alt="Logo PROFIX">
-            </a>
+            <a class="navbar-brand" href="#"><img src="imagens/logo-profix.png" alt="Logo PROFIX"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#heroCarousel">Início</a></li>
                     <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#sobre">Sobre Nós</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#calculadora">Calculadora Solar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#depoimentos">Depoimentos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <header id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active" style="background-image: url('imagens/carrossel-solar.jpg')">
-                <div class="carousel-caption text-center"><h5>Gere sua Própria Energia</h5><p>Instale painéis solares com a PROFIX e reduza sua conta de luz drasticamente.</p><button type="button" class="btn btn-destaque mt-3" data-bs-toggle="modal" data-bs-target="#modalOrcamentoSolar">Quero um Orçamento</button></div>
+            <div class="carousel-item active" style="background-image: url('imagens/carrossel-solar.jpg');">
+                <div class="container h-100 d-flex align-items-center">
+                    <div class="carousel-caption text-start">
+                        <h1 class="display-4 fw-bold">Gere sua Própria Energia</h1>
+                        <p class="lead">Reduza sua conta de luz com um sistema de energia solar projetado para você.</p>
+                        <button type="button" class="btn btn-destaque btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#modalOrcamentoSolar">Solicitar Orçamento Solar</button>
+                    </div>
+                </div>
             </div>
-            <div class="carousel-item" style="background-image: url('imagens/carrossel-refrigeracao.jpg')">
-                <div class="carousel-caption text-center"><h5>Conforto e Clima Ideal</h5><p>Soluções completas em instalação e manutenção de ar condicionado.</p><button type="button" class="btn btn-destaque mt-3" data-bs-toggle="modal" data-bs-target="#modalOrcamentoSolar">Consultar Orçamento</button></div>
-            </div>
-            <div class="carousel-item" style="background-image: url('imagens/carrossel-seguranca.jpg')">
-                <div class="carousel-caption text-center"><h5>Proteção 24 Horas por Dia</h5><p>Sistemas de segurança com câmeras e alarmes de última geração.</p><button type="button" class="btn btn-destaque mt-3" data-bs-toggle="modal" data-bs-target="#modalOrcamentoSolar">Pedir Orçamento</button></div>
+            <div class="carousel-item" style="background-image: url('imagens/carrossel-refrigeracao.jpg');">
+                 <div class="container h-100 d-flex align-items-center">
+                    <div class="carousel-caption text-start">
+                        <h1 class="display-4 fw-bold">Conforto e Clima Ideal</h1>
+                        <p class="lead">Instalação e manutenção de ar condicionado para residências e empresas.</p>
+                        <a href="https://wa.me/5519982454954?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20ar%20condicionado." target="_blank" class="btn btn-destaque btn-lg mt-3">Orçamento de Ar Condicionado</a>
+                    </div>
+                </div>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
         <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
-    </div>
+    </header>
 
-    <section id="servicos" class="section-padding"><div class="container"><h2 class="section-title">Nossos Serviços</h2><div class="row g-4"><div class="col-lg-4 col-md-6 d-flex"><div class="card service-card"><img src="imagens/servico-solar.jpg" class="card-img-top" alt="Serviço de Energia Solar"><div class="card-body text-center p-4"><h5 class="card-title">Energia Solar</h5><p class="card-text">Projetos e instalação de painéis fotovoltaicos para você gerar sua própria energia e economizar.</p></div></div></div><div class="col-lg-4 col-md-6 d-flex"><div class="card service-card"><img src="imagens/servico-refrigeracao.jpg" class="card-img-top" alt="Serviço de Ar Condicionado"><div class="card-body text-center p-4"><h5 class="card-title">Ar Condicionado</h5><p class="card-text">Instalação, manutenção e venda de sistemas de climatização residenciais e comerciais.</p></div></div></div><div class="col-lg-4 col-md-6 d-flex"><div class="card service-card"><img src="imagens/servico-seguranca.jpg" class="card-img-top" alt="Serviço de Sistemas de Segurança"><div class="card-body text-center p-4"><h5 class="card-title">Sistemas de Segurança</h5><p class="card-text">Instalação de câmeras (CFTV), alarmes e cercas elétricas para proteger seu patrimônio.</p></div></div></div></div></div></section>
-    
-    <section id="sobre" class="section-padding" style="background-color: #f8f9fa;"><div class="container"><h2 class="section-title">Sobre a PROFIX</h2><div class="row align-items-center"><div class="col-lg-6"><h3 style="color: var(--cor-primaria); font-weight: 700;">Compromisso com a Inovação e a Qualidade</h3><p>Somos uma empresa comprometida em oferecer soluções inovadoras e de alta qualidade para o conforto e segurança de nossos clientes. Com uma equipe de profissionais qualificados, buscamos a excelência em cada projeto.</p><p>Nossa missão é proporcionar tranquilidade e bem-estar, seja climatizando um ambiente, gerando energia limpa ou protegendo o que é mais importante para você.</p></div><div class="col-lg-6 mt-4 mt-lg-0"><img src="imagens/sobre-nos.jpg" alt="Equipe PROFIX" class="img-sobre-nos"></div></div></div></section>
+    <section id="servicos" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Nossas Soluções</h2>
+            <div class="row justify-content-center g-4">
+                <div class="col-md-6 col-lg-5 d-flex">
+                    <div class="card service-card">
+                        <img src="imagens/servico-solar.jpg" class="card-img-top" alt="Serviço de Energia Solar">
+                        <div class="card-body text-center p-4">
+                            <h3 class="card-title h4">Energia Solar Fotovoltaica</h3>
+                            <p class="card-text">Desenvolvemos projetos completos de energia solar, desde a análise de viabilidade até a instalação e homologação, garantindo máxima eficiência e economia para você.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5 d-flex">
+                    <div class="card service-card">
+                        <img src="imagens/servico-refrigeracao.jpg" class="card-img-top" alt="Serviço de Ar Condicionado">
+                        <div class="card-body text-center p-4">
+                            <h3 class="card-title h4">Ar Condicionado e Climatização</h3>
+                            <p class="card-text">Oferecemos venda, instalação e manutenção de sistemas de ar condicionado, assegurando o conforto e a qualidade do ar em seus ambientes o ano todo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section id="contato" class="section-padding"><div class="container"><h2 class="section-title">Vamos Iniciar seu Projeto?</h2><div class="row justify-content-center"><div class="col-lg-8 text-center"><p class="lead mb-4">Estamos prontos para transformar sua relação com a energia e a segurança. Clique no botão abaixo para solicitar uma proposta personalizada sem compromisso.</p><button type="button" class="btn btn-destaque btn-lg" data-bs-toggle="modal" data-bs-target="#modalOrcamentoSolar">Solicitar Orçamento Agora</button></div></div></div></section>
+    <section id="diferenciais" class="section-padding" style="background-color: var(--cor-fundo-claro);">
+        <div class="container">
+            <h2 class="section-title">Por que escolher a PROFIX?</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3 d-flex"><div class="diferencial-item"><div class="icon"><i class="bi bi-people-fill"></i></div><h4 class="h5">Equipe Qualificada</h4><p>Técnicos certificados e experientes para garantir uma instalação segura e eficiente.</p></div></div>
+                <div class="col-md-6 col-lg-3 d-flex"><div class="diferencial-item"><div class="icon"><i class="bi bi-speedometer2"></i></div><h4 class="h5">Orçamento Rápido</h4><p>Receba uma proposta detalhada e transparente em tempo recorde para o seu projeto.</p></div></div>
+                <div class="col-md-6 col-lg-3 d-flex"><div class="diferencial-item"><div class="icon"><i class="bi bi-cpu-fill"></i></div><h4 class="h5">Equipamentos de Ponta</h4><p>Trabalhamos com as melhores marcas de painéis e inversores do mercado mundial.</p></div></div>
+                <div class="col-md-6 col-lg-3 d-flex"><div class="diferencial-item"><div class="icon"><i class="bi bi-shield-check"></i></div><h4 class="h5">Garantia de Serviço</h4><p>Oferecemos garantia completa tanto dos equipamentos quanto da nossa mão de obra.</p></div></div>
+            </div>
+        </div>
+    </section>
 
-    <div class="modal fade" id="modalOrcamentoSolar" tabindex="-1" aria-labelledby="modalOrcamentoLabel" aria-hidden="true">
+    <section id="calculadora" class="section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-5 fw-bold text-light">Simule seu Sistema Solar</h2>
+                    <p class="lead text-light">Insira seu gasto mensal com energia e descubra o potencial do seu telhado. Veja a quantidade de painéis, o investimento estimado e o potencial de economia.</p>
+                </div>
+                <div class="col-lg-6 mt-4 mt-lg-0">
+                    <div id="calculadora-form" class="p-4 rounded" style="background-color: rgba(255,255,255,0.1);">
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <label for="gasto-mensal-page" class="form-label">Seu Gasto Mensal (R$)</label>
+                                <input type="number" class="form-control p-2" id="gasto-mensal-page" placeholder="Ex: 500" required>
+                            </div>
+                            <div class="col-md-4 mb-3 d-grid pt-md-4">
+                                <button type="button" class="btn btn-light fw-bold" id="calcular-btn-page">
+                                    <i class="bi bi-calculator"></i> Simular
+                                </button>
+                            </div>
+                        </div>
+                        <div id="resultado-calculo-page" class="mt-3" style="min-height: 240px;">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="depoimentos" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">O que nossos clientes dizem</h2>
+            <div id="carouselDepoimentos" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active"><div class="depoimento-content text-center"><p class="depoimento-texto">"Excelente serviço e profissionalismo. Positivamente surpreendido com a seriedade com que trabalham, além da transparência na forma de trabalho. Recomendo."</p><p class="depoimento-autor">Thiago Souza - Mogi Mirim, SP</p></div></div>
+                    <div class="carousel-item"><div class="depoimento-content text-center"><p class="depoimento-texto">"Equipe muito competente e serviço perfeito. Fiquei satisfeito com o atendimento e qualidade dos profissionais."</p><p class="depoimento-autor">José Pajolli, Mogi Guaçu SP</p></div></div>
+                    <div class="carousel-item"><div class="depoimento-content text-center"><p class="depoimento-texto">"Excelente qualidade no serviço e atendimento. Recomendo"</p><p class="depoimento-autor">Maelly Gomes - Estiva Gerbi, SP</p></div></div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselDepoimentos" data-bs-slide="prev"><span class="carousel-control-prev-icon" style="background-color: var(--cor-primaria); border-radius: 50%;"></span></button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselDepoimentos" data-bs-slide="next"><span class="carousel-control-next-icon" style="background-color: var(--cor-primaria); border-radius: 50%;"></span></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="section-padding" style="background-color: var(--cor-fundo-claro);">
+        <div class="container">
+            <h2 class="section-title">Vamos Iniciar seu Projeto?</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <p class="lead mb-4">Seja para um sistema de energia solar ou climatização, estamos prontos para oferecer a melhor solução. Fale conosco e solicite uma proposta sem compromisso.</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                        <button type="button" class="btn btn-destaque btn-lg" data-bs-toggle="modal" data-bs-target="#modalOrcamentoSolar">Pedir Orçamento Detalhado</button>
+                        <a href="https://wa.me/5519982454954?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20da%20PROFIX." target="_blank" class="btn btn-outline-dark btn-lg"><i class="bi bi-whatsapp"></i> Chamar no WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="modalOrcamentoSolar" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
           <div class="modal-header" style="background-color: var(--cor-primaria); color: var(--cor-texto-claro);">
-            <h5 class="modal-title" id="modalOrcamentoLabel">Solicite seu Orçamento ☀️</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title">Orçamento Detalhado ☀️</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body">
-            <p class="text-center mb-4">Preencha os dados, calcule uma estimativa e envie para nosso WhatsApp!</p>
+            <p class="text-center mb-4">Complete os dados abaixo para receber sua proposta personalizada.</p>
             <form id="solar-form-whatsapp">
                 <h6 class="mb-3" style="color: var(--cor-primaria);">1. Suas Informações</h6>
                 <div class="row">
-                    <div class="col-md-6 mb-3"><label for="nome-whats" class="form-label">Nome Completo</label><input type="text" class="form-control p-2" id="nome-whats" placeholder="Seu nome completo" required></div>
-                    <div class="col-md-6 mb-3"><label for="endereco-whats" class="form-label">Endereço da Instalação</label><input type="text" class="form-control p-2" id="endereco-whats" placeholder="Rua, número, bairro..." required></div>
+                    <div class="col-md-6 mb-3"><label for="nome-whats" class="form-label">Nome Completo</label><input type="text" class="form-control p-2" id="nome-whats" required></div>
+                    <div class="col-md-6 mb-3"><label for="endereco-whats" class="form-label">Endereço da Instalação</label><input type="text" class="form-control p-2" id="endereco-whats" required></div>
                 </div>
-                <h6 class="mt-3 mb-3" style="color: var(--cor-primaria);">2. Consumo e Estimativa</h6>
-                <div class="row align-items-center">
-                    <div class="col-lg-4 col-md-12 mb-3"><label for="gasto-energia-whats" class="form-label">Gasto Mensal</label><input type="number" class="form-control p-2" id="gasto-energia-whats" placeholder="Ex: 500" required></div>
-                    <div class="col-lg-5 col-md-6 mb-3"><div class="form-check form-check-inline pt-4"><input class="form-check-input" type="radio" name="tipo-gasto-whats" id="gasto-reais-whats" value="reais" checked><label class="form-check-label" for="gasto-reais-whats">Reais (R$)</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="tipo-gasto-whats" id="gasto-kwh-whats" value="kwh"><label class="form-check-label" for="gasto-kwh-whats">kWh</label></div></div>
-                    <div class="col-lg-3 col-md-6 mb-3 d-grid"><button type="button" class="btn btn-primary" id="calcular-btn">Calcular</button></div>
+                <h6 class="mt-3 mb-3" style="color: var(--cor-primaria);">2. Consumo de Energia</h6>
+                <div class="row">
+                    <div class="col-md-6 mb-3"><label for="gasto-energia-modal" class="form-label">Gasto Mensal (R$)</label><input type="number" class="form-control p-2" id="gasto-energia-modal" placeholder="Preenchido pela calculadora" required></div>
                 </div>
-                <div id="resultado-calculo" class="mt-2 text-center fw-bold" style="min-height: 24px;"></div>
-
-                <h6 class="mt-4 mb-3" style="color: var(--cor-primaria);">3. Detalhes do Telhado</h6>
+                <h6 class="mt-3 mb-3" style="color: var(--cor-primaria);">3. Detalhes do Telhado</h6>
                 <div class="row">
                     <div class="col-md-12 mb-3"><label for="tipo-telhado-whats" class="form-label">Qual o tipo do seu telhado?</label><select class="form-select p-2" id="tipo-telhado-whats" required><option selected disabled value="">Selecione uma opção...</option><option value="Cerâmico">Telhado Cerâmico</option><option value="Metálico">Telhado Metálico</option><option value="Sanduíche">Telhado Sanduíche</option><option value="Brasilit">Telhado Brasilit</option><option value="Outro">Outro tipo</option></select></div>
-                    <div class="col-md-12 mb-3 d-none" id="outro-telhado-container-whats"><label for="outro-telhado-texto-whats" class="form-label">Qual o outro tipo?</label><input type="text" class="form-control p-2" id="outro-telhado-texto-whats" placeholder="Ex: Laje, telha de concreto..."></div>
+                    <div class="col-md-12 mb-3 d-none" id="outro-telhado-container-whats"><label for="outro-telhado-texto-whats" class="form-label">Qual o outro tipo?</label><input type="text" class="form-control p-2" id="outro-telhado-texto-whats"></div>
                 </div>
             </form>
           </div>
@@ -140,82 +239,144 @@
       </div>
     </div>
     
-    <footer class="pt-5 pb-4"><div class="container text-center"><div class="row"><div class="col-md-12"><h4 class="mb-3">PROFIX</h4><p>Soluções em Energia Solar, Refrigeração e Segurança.</p><div class="social-icons mb-4"><a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a><a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a><a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a></div><p class="mb-0">&copy; 2025 PROFIX. Todos os direitos reservados.</p></div></div></div></footer>
+    <footer class="pt-5 pb-4"><div class="container text-center"><div class="row"><div class="col-md-12"><h4 class="mb-3">PROFIX</h4><p>Soluções em Energia Solar e Refrigeração.</p><div class="social-icons mb-4"><a href="https://wa.me/5519982454954?text=Gostaria%20de%20um%20or%C3%A7amento" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a><a href="https://www.instagram.com/profix.instalacoes/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a><a href="https://www.facebook.com/FRANKAUTOELETRICA/?locale=pt_BR" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a></div><p class="mb-0">&copy; 2025 PROFIX. Todos os direitos reservados.</p></div></div></div></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Função para mostrar/ocultar o campo "Outro" tipo de telhado
-        document.getElementById('tipo-telhado-whats').addEventListener('change', function () {
-            document.getElementById('outro-telhado-container-whats').classList.toggle('d-none', this.value !== 'Outro');
-        });
-
-        // --- LÓGICA DA CALCULADORA ---
-        function calcularPaineis() {
-            const gastoInput = document.getElementById('gasto-energia-whats');
-            const tipoGasto = document.querySelector('input[name="tipo-gasto-whats"]:checked').value;
-            const resultadoDiv = document.getElementById('resultado-calculo');
-
-            let gasto = parseFloat(gastoInput.value);
-            if (!gasto || gasto <= 0) {
-                resultadoDiv.innerHTML = `<span class="text-danger">Por favor, insira um valor de consumo válido.</span>`;
-                return null; // Retorna nulo se o cálculo falhar
+        document.addEventListener('DOMContentLoaded', function () {
+            // Lógica do Modal
+            const tipoTelhadoSelect = document.getElementById('tipo-telhado-whats');
+            if(tipoTelhadoSelect) {
+                tipoTelhadoSelect.addEventListener('change', function () {
+                    document.getElementById('outro-telhado-container-whats').classList.toggle('d-none', this.value !== 'Outro');
+                });
             }
 
-            let consumoKwhMes;
-            if (tipoGasto === 'reais') {
-                consumoKwhMes = gasto / 0.98; // Usando a tarifa para converter R$ para kWh
-            } else {
-                consumoKwhMes = gasto; // O valor já está em kWh
-            }
+            // --- LÓGICA DA CALCULADORA COM BOTÃO DE AÇÃO "ECONOMIZE AGORA" ---
+            const calcularBtnPage = document.getElementById('calcular-btn-page');
+            if(calcularBtnPage) {
+                calcularBtnPage.addEventListener('click', function() {
+                    const gastoInput = document.getElementById('gasto-mensal-page');
+                    const resultadoDiv = document.getElementById('resultado-calculo-page');
+                    
+                    const gastoMensal = parseFloat(gastoInput.value);
+                    const TAXA_MINIMA = 120;
 
-            const consumoKwhDia = consumoKwhMes / 30;
-            const potenciaNecessaria = consumoKwhDia / 5; // 5 horas de sol pico
-            const potenciaFinalKwp = potenciaNecessaria / 0.8; // Compensando 20% de perdas
-            const qtdPaineis = Math.ceil(potenciaFinalKwp / 0.6); // Arredonda para cima, painel de 0.6 kWp
+                    if (!gastoMensal || gastoMensal <= TAXA_MINIMA) {
+                        resultadoDiv.innerHTML = `<div class="text-warning fw-bold p-3">Por favor, insira um gasto mensal em Reais (R$) acima de R$ ${TAXA_MINIMA}.</div>`;
+                        return;
+                    }
 
-            resultadoDiv.innerHTML = `<span style="color: var(--cor-primaria);">Estimativa: Você precisará de aproximadamente <span style="color: var(--cor-destaque); font-size: 1.2rem;">${qtdPaineis}</span> painéis solares.</span>`;
-            return qtdPaineis;
-        }
+                    // Premissas do negócio
+                    const TARIFA_KWH = 0.98;
+                    const CUSTO_POR_PAINEL_INSTALADO = 13000 / 8;
+                    const HORAS_SOL_PICO = 5;
+                    const EFICIENCIA_SISTEMA = 0.8;
+                    const POTENCIA_PAINEL_KWP = 0.6;
+                    
+                    // Cálculos
+                    const consumoKwhMes = gastoMensal / TARIFA_KWH;
+                    const consumoKwhDia = consumoKwhMes / 30;
+                    const potenciaNecessaria = consumoKwhDia / HORAS_SOL_PICO;
+                    const potenciaFinalKwp = potenciaNecessaria / EFICIENCIA_SISTEMA;
+                    const qtdPaineis = Math.ceil(potenciaFinalKwp / POTENCIA_PAINEL_KWP);
+                    const custoSistemaEstimado = qtdPaineis * CUSTO_POR_PAINEL_INSTALADO;
+                    const economiaMensal = gastoMensal - TAXA_MINIMA;
 
-        // Adiciona o evento de clique ao botão "Calcular"
-        document.getElementById('calcular-btn').addEventListener('click', calcularPaineis);
+                    // Formatação
+                    const formatoMoeda = { style: 'currency', currency: 'BRL' };
+                    const custoFormatado = custoSistemaEstimado.toLocaleString('pt-BR', formatoMoeda);
+                    const economiaFormatada = economiaMensal.toLocaleString('pt-BR', formatoMoeda);
 
-        // --- LÓGICA DO ENVIO PARA WHATSAPP ---
-        document.getElementById('enviar-whatsapp-btn').addEventListener('click', function () {
-            const form = document.getElementById('solar-form-whatsapp');
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return;
+                    // Exibir o resultado passo a passo com o novo botão "Economize Agora"
+                    resultadoDiv.innerHTML = `
+                        <div style="background-color: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+                            <h5 class="text-light mb-3">Sua Projeção Financeira:</h5>
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="bi bi-grid fs-4 me-3" style="color: var(--cor-destaque);"></i>
+                                <div class="text-light">Painéis Necessários: <strong class="fs-5 d-block">${qtdPaineis} painéis</strong></div>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="bi bi-cash-coin fs-4 me-3" style="color: var(--cor-destaque);"></i>
+                                <div class="text-light">Investimento Estimado: <strong class="fs-5 d-block">Fale com nossa equipe</strong></div>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-calendar-check fs-4 me-3" style="color: var(--cor-destaque);"></i>
+                                <div class="text-light">Média de Economia Mensal: <strong class="fs-5 d-block">${economiaFormatada}</strong></div>
+                            </div>
+                            
+                            <a href="#" id="link-resultado-whatsapp" class="text-decoration-none d-block">
+                                <div class="text-center p-3 rounded" style="background-color: var(--cor-destaque);">
+                                    <strong class="fs-4 d-block text-dark">ECONOMIZE AGORA</strong>
+                                    <span class="text-dark d-block">Clique para enviar sua simulação no WhatsApp!</span>
+                                    <i class="bi bi-whatsapp fs-3 text-dark d-block mt-1"></i>
+                                </div>
+                            </a>
+                        </div>
+                    `;
+
+                    // Adicionar o evento de clique ao botão que acabamos de criar
+                    document.getElementById('link-resultado-whatsapp').addEventListener('click', function(e) {
+                        e.preventDefault();
+
+                        let mensagem = `Olá! Fiz uma simulação no site e quero economizar!\n\n`;
+                        mensagem += `*--- Minha Simulação ---\n*`;
+                        mensagem += `*Gasto Mensal:* ${gastoMensal.toLocaleString('pt-BR', formatoMoeda)}\n`;
+                        mensagem += `*Painéis Necessários:* ${qtdPaineis} painéis\n`;
+                        mensagem += `*Investimento Estimado:* ${custoFormatado}\n`;
+                        mensagem += `*Economia Mensal:* ${economiaFormatada}\n`;
+                        mensagem += `*--------------------------*\n\n`;
+                        mensagem += `Gostaria de um orçamento detalhado.`;
+                        
+                        const numeroWhatsApp = '5519982454954';
+                        const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+                        window.open(linkWhatsApp, '_blank');
+                    });
+
+                    // Preenche o campo de gasto no modal para conveniência
+                    const gastoModalInput = document.getElementById('gasto-energia-modal');
+                    if(gastoModalInput) {
+                        gastoModalInput.value = gastoMensal;
+                    }
+                });
             }
             
-            // Re-calcula para garantir que o valor está atualizado antes de enviar
-            const qtdPaineis = calcularPaineis();
+            // Lógica do Modal para enviar o orçamento detalhado (Preservada)
+            const enviarWhatsappBtn = document.getElementById('enviar-whatsapp-btn');
+            if(enviarWhatsappBtn) {
+                enviarWhatsappBtn.addEventListener('click', function () {
+                    const form = document.getElementById('solar-form-whatsapp');
+                    if (!form.checkValidity()) {
+                        form.reportValidity();
+                        return;
+                    }
+                    const nome = document.getElementById('nome-whats').value;
+                    const endereco = document.getElementById('endereco-whats').value;
+                    const gastoModal = document.getElementById('gasto-energia-modal').value;
+                    const telhado = document.getElementById('tipo-telhado-whats').value;
+                    const outroTelhado = document.getElementById('outro-telhado-texto-whats').value;
+                    const resultadoCalculo = document.getElementById('resultado-calculo-page').innerText;
 
-            // Pega os outros valores do formulário
-            const nome = document.getElementById('nome-whats').value;
-            const endereco = document.getElementById('endereco-whats').value;
-            const gasto = document.getElementById('gasto-energia-whats').value;
-            const tipoGasto = document.querySelector('input[name="tipo-gasto-whats"]:checked').value;
-            const telhado = document.getElementById('tipo-telhado-whats').value;
-            const outroTelhado = document.getElementById('outro-telhado-texto-whats').value;
+                    let mensagem = `Olá, gostaria de um orçamento detalhado! ☀️\n\n`;
+                    mensagem += `*Nome:* ${nome}\n`;
+                    mensagem += `*Endereço:* ${endereco}\n`;
+                    mensagem += `*Gasto Mensal Informado:* R$ ${gastoModal}\n`;
+                    
+                    if (resultadoCalculo && resultadoCalculo.includes('Projeção')) {
+                        mensagem += `\n*--- Simulação da Calculadora ---\n*${resultadoCalculo.replace(/\s+/g, ' ').trim()}\n*----------------------------------*\n`;
+                    }
+                    
+                    mensagem += `\n*Tipo de Telhado:* ${telhado}\n`;
+                    if (telhado === 'Outro' && outroTelhado) {
+                        mensagem += `*Qual o outro tipo:* ${outroTelhado}\n`;
+                    }
 
-            // Monta a mensagem final
-            let mensagem = `Olá, gostaria de um orçamento para Energia Solar! ☀️\n\n`;
-            mensagem += `*Nome:* ${nome}\n`;
-            mensagem += `*Endereço:* ${endereco}\n`;
-            mensagem += `*Gasto Mensal:* ${gasto} (${tipoGasto})\n`;
-            if (qtdPaineis) {
-                mensagem += `*Estimativa:* Aproximadamente ${qtdPaineis} painéis\n`;
+                    const numeroWhatsApp = '5519982454954';
+                    const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+                    window.open(linkWhatsApp, '_blank');
+                });
             }
-            mensagem += `*Tipo de Telhado:* ${telhado}\n`;
-            if (telhado === 'Outro' && outroTelhado) {
-                mensagem += `*Qual o outro tipo:* ${outroTelhado}\n`;
-            }
-
-            const numeroWhatsApp = '5519982454954';
-            const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
-            window.open(linkWhatsApp, '_blank');
         });
     </script>
 </body>
